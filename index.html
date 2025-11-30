@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Repositórios do GitHub consultando API GitHub</title>
+    <title>Listando Repositórios do GitHub consultando API GitHub</title>
 </head>
 <body>
+    
+    <!-- Cabeçalho da tela -->
     <h1>Listando os repositórios do GitHub</h1>
 
-    <!-- 
-        Solicita o nome do usuário Github
-        Botão para listar os repositórios
-    -->
+    <!-- ========================================================================================================
+        A <div> abaixo é composta por:    
+            1) título da informação que se deseja que seja informada
+            2) textbox onde o nome do usuário github deve ser informado com um id denominado: usergithubinformado
+            3) botão de ação que ao ser clicado acionará a função 'getRepository',
+               passando com parâmetro o nome do usuário github informado no textbox
+    ======================================================================================================== -->
     <div>
         <label>Nome do usuário Github</label>
-        <input type="text" id="githubuser">
-        <button onclick="getRepository()">Listar repositórios</button>
+        <input type="text" id="usergithubinformado">
+        <button onclick="getRepository(document.querySelector('#usergithubinformado').value)">Listar repositórios</button>
     </div>
 
     <!-- Somente uma linha divisória para separar a solicitação do usuário github da lista dos repositórios -->
     <hr>
+
+    <!-- Seção de scripts (sempre no final do body) -->
+    <script>
+
+        /*
+            Função que será acionada pelo botão de ação 'Listar Repositórios'
+            cuja missões serão:
+            1) 
+        */
+        function getRepository(theUserGitHub){
+
+            // Apenas como validação, exibe no console do browser o nome do usuário github
+            console.log(theUserGithub)
+
+        }
+
+    </script> 
 
 </body>
 </html>
