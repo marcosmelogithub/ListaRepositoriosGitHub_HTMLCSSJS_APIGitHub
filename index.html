@@ -32,12 +32,34 @@
         /*
             Função que será acionada pelo botão de ação 'Listar Repositórios'
             cuja missões serão:
-            1) 
+            1) através do nome do usuário github informado na tela, acionará a api do github para trazer a lista de repositório
+            2) transformará a lista de repositórios obtida para o formato json
+            3) a lista, já transformada em json será um array e cada elemento do array, que corresponderá a cada repositório
+               será tratado e exibido indidualmente
         */
         function getRepository(theUserGitHub){
 
-            // Apenas como validação, exibe no console do browser o nome do usuário github
-            console.log(theUserGithub)
+            // Utiliza a API do github fornecendo o nome do usuário github e tendo como retorno os repositório que esse usuário possui no github
+            fetch(`https://api.github.com/users/${theUserGitHub}/repos`)
+                // ação de sucesso do fetch
+                .then(async res =>{
+                
+                    let todosRepositorios = await res.json() // converte em json os dados dos repositórios trazidos pela API do github
+                    
+                    console.log(todosRepositorios.length + ' repositórios')
+
+                    // loop para ler cada repositório e exibir as informações individualmente
+                    todosRepositorios.map(cadaRepositorio => {
+                        console.log(cadaRepositorio.name) // exibe o nome de cada repositóro no console.log
+                    })
+
+                })
+                
+                // ação de erro do fetch
+                .catch(e => {
+                    console.log('erro')
+                    console.log(e)
+                })
 
         }
 
