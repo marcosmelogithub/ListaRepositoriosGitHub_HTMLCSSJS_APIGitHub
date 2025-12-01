@@ -26,6 +26,10 @@
     <!-- Somente uma linha divisória para separar a solicitação do usuário github da lista dos repositórios -->
     <hr>
 
+    <ul>
+
+    </ul>
+
     <!-- Seção de scripts (sempre no final do body) -->
     <script>
 
@@ -39,6 +43,12 @@
         */
         function getRepository(theUserGitHub){
 
+            // Cria uma lista desordenada e a inicializa vazia
+            // Sob essa lista desordenada é que serão criadas as linha (li)
+            // para exibir a informação de cada repositório
+            const listaDesordenada = document.querySelector('ul')
+            listaDesordenada.innerHTML = ''
+
             // Utiliza a API do github fornecendo o nome do usuário github e tendo como retorno os repositório que esse usuário possui no github
             fetch(`https://api.github.com/users/${theUserGitHub}/repos`)
                 // ação de sucesso do fetch
@@ -51,6 +61,18 @@
                     // loop para ler cada repositório e exibir as informações individualmente
                     todosRepositorios.map(cadaRepositorio => {
                         console.log(cadaRepositorio.name) // exibe o nome de cada repositóro no console.log
+                        
+                        // Cria o elemento li, que serão as linhas filhas do elemento ul
+                        // e em cada li, serão exibidas as informações de cada repositório
+                        // o elemento li deve ser criado como let para que possa ter o seu conteúdo atualizado
+                        let linhaLI = document.createElement('li')
+                        linhaLI.innerHTML = `${cadaRepositorio.name}`
+
+                        // Cria um elemento hr para separar cada repositório quando esse for exibido dentro do ul
+                        let separaLinha = document.createElement('hr')
+
+                        listaDesordenada.appendChild(linhaLI)
+                        listaDesordenada.appendChild(separaLinha)
                     })
 
                 })
@@ -63,6 +85,7 @@
 
         }
 
+        
     </script> 
 
 </body>
